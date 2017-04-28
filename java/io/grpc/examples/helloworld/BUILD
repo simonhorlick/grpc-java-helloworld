@@ -3,6 +3,7 @@ load("@grpc_java//:java_grpc_library.bzl", "java_grpc_library")
 proto_library(
     name = "helloworld_proto",
     srcs = ["helloworld.proto"],
+    deps = ["@googleapis//google/api:annotations_proto"],
 )
 
 java_proto_library(
