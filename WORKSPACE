@@ -1,6 +1,7 @@
-local_repository(
+git_repository(
     name = "grpc_java",
-    path = "/usr/local/src/io_grpc_java",
+    commit = "5772e68578411f088d123552fbca96ab3ef40365",
+    remote = "https://github.com/simonhorlick/grpc-java.git",
 )
 
 load("@grpc_java//:repositories.bzl", "grpc_java_repositories")
