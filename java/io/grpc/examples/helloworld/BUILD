@@ -23,8 +23,8 @@ java_library(
     deps = [
         ":helloworld_java_grpc",
         ":helloworld_java_proto",
-        "@grpc_java//:grpc-java",
-        "@grpc_java//:grpc-okhttp",
+        "@grpc_java",
+        "@grpc_java//okhttp",
     ],
 )
 
@@ -41,7 +41,7 @@ java_library(
     deps = [
         ":helloworld_java_grpc",
         ":helloworld_java_proto",
-        "@grpc_java//:grpc-java",
+        "@grpc_java",
     ],
 )
 
@@ -49,6 +49,6 @@ java_binary(
     name = "HelloWorldServer",
     runtime_deps = [
         ":server",
-        "@grpc_java//:grpc-netty",
+        "@grpc_java//netty",
     ],
 )

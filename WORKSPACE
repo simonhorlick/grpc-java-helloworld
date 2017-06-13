@@ -1,7 +1,8 @@
-git_repository(
+http_archive(
     name = "grpc_java",
-    commit = "5772e68578411f088d123552fbca96ab3ef40365",
-    remote = "https://github.com/simonhorlick/grpc-java.git",
+    sha256 = "f092088b7391ef1a6eac0e424ab503c9e228c6e6c399357b7e81b353582edbe7",
+    strip_prefix = "grpc-java-480f1d08b32f002f2eef1d63689d2b93b3717747",
+    urls = ["https://github.com/simonhorlick/grpc-java/archive/480f1d08b32f002f2eef1d63689d2b93b3717747.tar.gz"],
 )
 
 load("@grpc_java//:repositories.bzl", "grpc_java_repositories")
