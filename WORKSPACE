@@ -1,8 +1,8 @@
 http_archive(
     name = "grpc_java",
-    sha256 = "f092088b7391ef1a6eac0e424ab503c9e228c6e6c399357b7e81b353582edbe7",
-    strip_prefix = "grpc-java-480f1d08b32f002f2eef1d63689d2b93b3717747",
-    urls = ["https://github.com/simonhorlick/grpc-java/archive/480f1d08b32f002f2eef1d63689d2b93b3717747.tar.gz"],
+    sha256 = "956c7258c53f45824e3ce6d7e7e2211dc40640c1ba685f7c895c174fbd9106ba",
+    strip_prefix = "grpc-java-5ea8323164f7dae9ca972324d6e42344a1d04035",
+    urls = ["https://github.com/simonhorlick/grpc-java/archive/5ea8323164f7dae9ca972324d6e42344a1d04035.tar.gz"],
 )
 
 load("@grpc_java//:repositories.bzl", "grpc_java_repositories")
