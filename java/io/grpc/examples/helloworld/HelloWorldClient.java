@@ -45,7 +45,7 @@ public class HelloWorldClient {
   private static final Logger logger = Logger.getLogger(HelloWorldClient.class.getName());
 
   private final ManagedChannel channel;
-  private final GreeterGrpc.GreeterBlockingStub blockingStub;
+  private final HelloServiceGrpc.HelloServiceBlockingStub blockingStub;
 
   /** Construct client connecting to HelloWorld server at {@code host:port}. */
   public HelloWorldClient(String host, int port) {
@@ -58,7 +58,7 @@ public class HelloWorldClient {
   /** Construct client for accessing RouteGuide server using the existing channel. */
   HelloWorldClient(ManagedChannelBuilder<?> channelBuilder) {
     channel = channelBuilder.build();
-    blockingStub = GreeterGrpc.newBlockingStub(channel);
+    blockingStub = HelloServiceGrpc.newBlockingStub(channel);
   }
 
   public void shutdown() throws InterruptedException {
@@ -69,7 +69,7 @@ public class HelloWorldClient {
   public void greet(String name) {
     logger.info("Will try to greet " + name + " ...");
     HelloRequest request = HelloRequest.newBuilder().setName(name).build();
-    HelloReply response;
+    HelloResponse response;
     try {
       response = blockingStub.sayHello(request);
     } catch (StatusRuntimeException e) {
