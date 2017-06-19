@@ -37,7 +37,10 @@ java_binary(
 
 java_library(
     name = "server",
-    srcs = ["HelloWorldServer.java"],
+    srcs = [
+        "HelloWorldServer.java",
+        "Hello.java"
+    ],
     deps = [
         ":helloworld_java_grpc",
         ":helloworld_java_proto",
