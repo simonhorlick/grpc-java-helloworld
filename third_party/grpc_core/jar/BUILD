@@ -1,0 +1,8 @@
+java_library(
+    name = "jar",
+    visibility = ["//visibility:public"],
+    exports = [
+        "@grpc_java//core",
+        "@grpc_java//core:inprocess",
+    ],
+)

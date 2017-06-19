@@ -38,13 +38,19 @@ java_binary(
 java_library(
     name = "server",
     srcs = [
+        "Hello.java",
         "HelloWorldServer.java",
-        "Hello.java"
+        "MyComponent.java",
+        "MyModule.java",
     ],
     deps = [
         ":helloworld_java_grpc",
         ":helloworld_java_proto",
+        "//java/io/grpc/examples/helloworld/interceptors",
+        "@com_google_dagger//:dagger_with_compiler",
+        "@com_google_dagger//java/dagger/grpc/server",
         "@grpc_java",
+        "@grpc_java//netty",
     ],
 )
 
@@ -52,6 +58,16 @@ java_binary(
     name = "HelloWorldServer",
     runtime_deps = [
         ":server",
-        "@grpc_java//netty",
+        "@io_netty_buffer//jar",
+        "@io_netty_codec//jar",
+        "@io_netty_codec_http//jar",
+        "@io_netty_codec_http2//jar",
+        "@io_netty_codec_socks//jar",
+        "@io_netty_common//jar",
+        "@io_netty_handler//jar",
+        "@io_netty_handler_proxy//jar",
+        "@io_netty_resolver//jar",
+        "@io_netty_transport//jar",
+        "@io_netty_tcnative_boringssl_static//jar",
     ],
 )

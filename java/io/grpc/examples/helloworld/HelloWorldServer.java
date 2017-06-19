@@ -31,8 +31,8 @@
 
 package io.grpc.examples.helloworld;
 
+import dagger.grpc.server.NettyServerModule;
 import io.grpc.Server;
-import io.grpc.ServerBuilder;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -47,10 +47,12 @@ public class HelloWorldServer {
   private void start() throws IOException {
     /* The port on which the server should run */
     int port = 50051;
-    server = ServerBuilder.forPort(port)
-        .addService(new Hello())
-        .build()
-        .start();
+    MyComponent component =
+        DaggerMyComponent.builder()
+            .nettyServerModule(NettyServerModule.bindingToPort(port))
+            .build();
+    server = component.server();
+    server.start();
     logger.info("Server started, listening on " + port);
     Runtime.getRuntime().addShutdownHook(new Thread() {
       @Override
