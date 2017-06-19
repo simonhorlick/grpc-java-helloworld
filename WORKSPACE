@@ -1,3 +1,5 @@
+workspace(name = "helloworld")
+
 http_archive(
     name = "grpc_java",
     sha256 = "956c7258c53f45824e3ce6d7e7e2211dc40640c1ba685f7c895c174fbd9106ba",
