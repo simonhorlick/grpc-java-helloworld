@@ -50,8 +50,9 @@ java_library(
         "//java/io/grpc/examples/helloworld/interceptors",
         "@com_google_dagger//:dagger_with_compiler",
         "@com_google_dagger//java/dagger/grpc/server",
-        "@grpc_java",
+        "@grpc_java//core",
         "@grpc_java//netty",
+        "@grpc_java//stub",
     ],
 )
 
