@@ -17,5 +17,4 @@ public class Hello extends HelloServiceImplBase {
     responseObserver.onNext(reply);
     responseObserver.onCompleted();
   }
-
 }

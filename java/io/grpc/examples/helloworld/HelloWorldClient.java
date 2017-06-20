@@ -38,9 +38,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * A simple client that requests a greeting from the {@link HelloWorldServer}.
- */
+/** A simple client that requests a greeting from the {@link HelloWorldServer}. */
 public class HelloWorldClient {
   private static final Logger logger = Logger.getLogger(HelloWorldClient.class.getName());
 
@@ -49,10 +47,11 @@ public class HelloWorldClient {
 
   /** Construct client connecting to HelloWorld server at {@code host:port}. */
   public HelloWorldClient(String host, int port) {
-    this(ManagedChannelBuilder.forAddress(host, port)
-        // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
-        // needing certificates.
-        .usePlaintext(true));
+    this(
+        ManagedChannelBuilder.forAddress(host, port)
+            // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
+            // needing certificates.
+            .usePlaintext(true));
   }
 
   /** Construct client for accessing RouteGuide server using the existing channel. */

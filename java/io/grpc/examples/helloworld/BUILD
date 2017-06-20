@@ -47,10 +47,10 @@ java_library(
         ":helloworld_java_proto",
         "@com_google_dagger//:dagger_with_compiler",
         "@com_google_dagger//java/dagger/grpc/server",
+        "@com_google_guava//jar",
         "@grpc_java//core",
         "@grpc_java//netty",
         "@grpc_java//stub",
-        "@com_google_guava//jar",
     ],
 )
 

@@ -39,10 +39,10 @@ package helloworld;
 // The greeting service definition.
 service HelloService {
   // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloResponse) {
+  rpc SayHello(HelloRequest) returns (HelloResponse) {
     option (google.api.http) = {
-        post: "/v1/hello"
-        body: "*"
+      post: "/v1/hello"
+      body: "*"
     };
   }
 }

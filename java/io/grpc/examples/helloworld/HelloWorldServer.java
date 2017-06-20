@@ -46,9 +46,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.inject.Singleton;
 
-/**
- * Server that manages startup/shutdown of a {@link Hello} server.
- */
+/** Server that manages startup/shutdown of a {@link Hello} server. */
 public class HelloWorldServer {
 
   private static final Logger logger = Logger.getLogger(HelloWorldServer.class.getName());
@@ -72,27 +70,27 @@ public class HelloWorldServer {
   }
 
   @Module
-  static abstract class HelloServiceGrpcModule {
+  abstract static class HelloServiceGrpcModule {
 
     @Binds
-    abstract HelloServiceDefinition provideHelloServiceDefinition(
-        ServerComponent serverComponent);
+    abstract HelloServiceDefinition provideHelloServiceDefinition(ServerComponent serverComponent);
 
     @Provides
     @ForGrpcService(HelloServiceGrpc.class)
     static List<? extends ServerInterceptor> provideHelloInterceptors() {
       return new ArrayList<>();
     }
-
   }
 
   /** The component used to construct a Server to listen for {@link HelloServiceGrpc} rpcs. */
   @Singleton
-  @Component(modules = {
+  @Component(
+    modules = {
       HelloUnscopedGrpcServiceModule.class,
       HelloServiceGrpcModule.class,
       NettyServerModule.class,
-  })
+    }
+  )
   interface ServerComponent extends HelloServiceDefinition {
     Server server();
   }
@@ -104,7 +102,8 @@ public class HelloWorldServer {
     // Create any necessary dagger modules.
     NettyServerModule nettyServerModule = NettyServerModule.bindingToPort(flags.getPort());
 
-    ServerComponent component = DaggerHelloWorldServer_ServerComponent.builder()
+    ServerComponent component =
+        DaggerHelloWorldServer_ServerComponent.builder()
             .nettyServerModule(nettyServerModule)
             .build();
     Server server = component.server();
@@ -112,9 +111,8 @@ public class HelloWorldServer {
     logger.info("Starting rpc server on port " + flags.getPort());
     try {
       server.awaitTermination();
-    } catch(InterruptedException e) {
+    } catch (InterruptedException e) {
       logger.info("Stopping rpc server");
     }
   }
-
 }
