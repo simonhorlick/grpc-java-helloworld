@@ -2,9 +2,9 @@ workspace(name = "helloworld")
 
 http_archive(
     name = "grpc_java",
-    sha256 = "5af176356a0df489a178216e0678d724fff9a54d0f8af154ef8474cc25a9ad5b",
-    strip_prefix = "grpc-java-b3f437c12ad041ff381ec13cc21cd4f886d76262",
-    urls = ["https://github.com/simonhorlick/grpc-java/archive/b3f437c12ad041ff381ec13cc21cd4f886d76262.tar.gz"],
+    sha256 = "b2dfb2602f752dfe413f163e89b6d8e21cbc71dcaf5bc9baa35ebc53916b39a6",
+    strip_prefix = "grpc-java-f0901ed08f3f09049b06177802404b07207a75f0",
+    urls = ["https://github.com/simonhorlick/grpc-java/archive/f0901ed08f3f09049b06177802404b07207a75f0.tar.gz"],
 )
 
 load("//tools/build_rules:maven_jar.bzl", "maven_jar")

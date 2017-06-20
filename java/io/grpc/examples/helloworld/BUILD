@@ -23,8 +23,9 @@ java_library(
     deps = [
         ":helloworld_java_grpc",
         ":helloworld_java_proto",
-        "@grpc_java",
+        "@grpc_java//core",
         "@grpc_java//okhttp",
+        "@grpc_java//stub",
     ],
 )
 
@@ -67,7 +68,7 @@ java_binary(
         "@io_netty_handler//jar",
         "@io_netty_handler_proxy//jar",
         "@io_netty_resolver//jar",
-        "@io_netty_transport//jar",
         "@io_netty_tcnative_boringssl_static//jar",
+        "@io_netty_transport//jar",
     ],
 )
