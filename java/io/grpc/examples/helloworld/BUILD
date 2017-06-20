@@ -41,17 +41,16 @@ java_library(
     srcs = [
         "Hello.java",
         "HelloWorldServer.java",
-        "MyModule.java",
     ],
     deps = [
         ":helloworld_java_grpc",
         ":helloworld_java_proto",
-        "//java/io/grpc/examples/helloworld/interceptors",
         "@com_google_dagger//:dagger_with_compiler",
         "@com_google_dagger//java/dagger/grpc/server",
         "@grpc_java//core",
         "@grpc_java//netty",
         "@grpc_java//stub",
+        "@com_google_guava//jar",
     ],
 )
 

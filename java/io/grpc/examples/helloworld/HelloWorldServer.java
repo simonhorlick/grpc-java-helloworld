@@ -31,21 +31,88 @@
 
 package io.grpc.examples.helloworld;
 
+import com.google.common.collect.ImmutableList;
+import dagger.Binds;
+import dagger.Component;
+import dagger.Module;
+import dagger.Provides;
+import dagger.grpc.server.ForGrpcService;
 import dagger.grpc.server.NettyServerModule;
+import io.grpc.Server;
+import io.grpc.ServerInterceptor;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+import javax.inject.Singleton;
 
 /**
- * Server that manages startup/shutdown of a {@code Greeter} server.
+ * Server that manages startup/shutdown of a {@link Hello} server.
  */
 public class HelloWorldServer {
 
+  private static final Logger logger = Logger.getLogger(HelloWorldServer.class.getName());
+
+  static class CommandLineFlags {
+    private final int port;
+
+    private CommandLineFlags(int port) {
+      this.port = port;
+    }
+
+    int getPort() {
+      return port;
+    }
+
+    static CommandLineFlags parse(ImmutableList<String> args) {
+      return new CommandLineFlags(Integer.parseInt(args.get(0)));
+    }
+  }
+
+  @Module
+  static abstract class HelloServiceGrpcModule {
+
+    @Binds
+    abstract HelloServiceDefinition provideHelloServiceDefinition(
+        ServerComponent serverComponent);
+
+    @Provides
+    @ForGrpcService(HelloServiceGrpc.class)
+    static List<? extends ServerInterceptor> provideHelloInterceptors() {
+      return new ArrayList<>();
+    }
+
+  }
+
+  /** The component used to construct a Server to listen for {@link HelloServiceGrpc} rpcs. */
+  @Singleton
+  @Component(modules = {
+      HelloUnscopedGrpcServiceModule.class,
+      HelloServiceGrpcModule.class,
+      NettyServerModule.class,
+  })
+  interface ServerComponent extends HelloServiceDefinition {
+    Server server();
+  }
+
   public static void main(String[] args) throws IOException, InterruptedException {
-    DaggerMyComponent.builder()
-            .nettyServerModule(NettyServerModule.bindingToPort(50051))
-            .build()
-            .server()
-            .start()
-            .awaitTermination();
+    // Parse any command line flags.
+    CommandLineFlags flags = CommandLineFlags.parse(ImmutableList.copyOf(args));
+
+    // Create any necessary dagger modules.
+    NettyServerModule nettyServerModule = NettyServerModule.bindingToPort(flags.getPort());
+
+    ServerComponent component = DaggerHelloWorldServer_ServerComponent.builder()
+            .nettyServerModule(nettyServerModule)
+            .build();
+    Server server = component.server();
+    server.start();
+    logger.info("Starting rpc server on port " + flags.getPort());
+    try {
+      server.awaitTermination();
+    } catch(InterruptedException e) {
+      logger.info("Stopping rpc server");
+    }
   }
 
 }
