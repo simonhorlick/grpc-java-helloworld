@@ -7,7 +7,6 @@ http_archive(
     urls = ["https://github.com/simonhorlick/grpc-java/archive/f0901ed08f3f09049b06177802404b07207a75f0.tar.gz"],
 )
 
-load("//tools/build_rules:maven_jar.bzl", "maven_jar")
 load("@grpc_java//:repositories.bzl", "grpc_java_repositories")
 
 grpc_java_repositories(
@@ -105,12 +104,6 @@ maven_jar(
     name = "com_google_auto_value_auto_value",
     artifact = "com.google.auto.value:auto-value:1.4-rc1",
     sha1 = "9347939002003a7a3c3af48271fc2c18734528a4",
-)
-
-maven_jar(
-    name = "com_google_errorprone_error_prone_annotations",
-    artifact = "com.google.errorprone:error_prone_annotations:2.0.12",
-    sha1 = "8530d22d4ae8419e799d5a5234e0d2c0dcf15d4b",
 )
 
 maven_jar(
