@@ -41,7 +41,6 @@ java_library(
     srcs = [
         "Hello.java",
         "HelloWorldServer.java",
-        "MyComponent.java",
         "MyModule.java",
     ],
     deps = [
