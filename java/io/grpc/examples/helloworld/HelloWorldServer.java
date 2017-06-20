@@ -65,7 +65,9 @@ public class HelloWorldServer {
     }
 
     static CommandLineFlags parse(ImmutableList<String> args) {
-      return new CommandLineFlags(Integer.parseInt(args.get(0)));
+      int port = 50051;
+      // TODO(simon): Parse command line args.
+      return new CommandLineFlags(port);
     }
   }
 
