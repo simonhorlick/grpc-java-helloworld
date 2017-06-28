@@ -14,6 +14,7 @@ public class Hello extends HelloServiceImplBase {
   @Override
   public void sayHello(HelloRequest req, StreamObserver<HelloResponse> responseObserver) {
     HelloResponse reply = HelloResponse.newBuilder().setMessage("Hello " + req.getName()).build();
+    System.out.println("Sending response " + reply);
     responseObserver.onNext(reply);
     responseObserver.onCompleted();
   }

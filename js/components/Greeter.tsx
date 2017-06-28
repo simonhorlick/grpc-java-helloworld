@@ -9,6 +9,7 @@ const API_URL = process.env.API_URL as string;
 
 interface State {
   name: string;
+  greeting: string;
   formErrors: string;
 }
 
@@ -23,6 +24,7 @@ export class Greeter extends React.Component<Props, State> {
 
     this.state = {
       name: "",
+      greeting: "",
       formErrors: ""
     };
   }
@@ -45,16 +47,19 @@ export class Greeter extends React.Component<Props, State> {
     grpc.invoke(HelloService.SayHello, {
       request: request,
       headers: new BrowserHeaders({
-          "authorization": `Bearer ${localStorage.getItem('access_token')}`,
+          "authorization": "Bearer ABC.DEF.XYZ",
       }),
       host: API_URL,
-      onHeaders: (headers: BrowserHeaders) => {
-        console.log("onHeaders", headers);
-      },
+      onHeaders: (headers: BrowserHeaders) => {},
       onMessage: (message: HelloResponse) => {
+        this.setState({ greeting: message.getMessage() });
       },
       onEnd: (code: grpc.Code, msg: string, trailers: BrowserHeaders) => {
-        console.log("onEnd", code, msg, trailers);
+        if (code == grpc.Code.OK) {
+          console.log("all ok")
+        } else {
+          console.log("hit an error", code, msg, trailers);
+        }
       },
     });
   }
@@ -64,6 +69,9 @@ export class Greeter extends React.Component<Props, State> {
       <div className="greeting-container">
         <div className="errors">
           {this.state.formErrors}
+        </div>
+        <div className="greeting">
+          {this.state.greeting}
         </div>
         <div className="field">
           <input
