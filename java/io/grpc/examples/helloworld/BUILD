@@ -18,19 +18,7 @@ java_grpc_library(
 )
 
 java_library(
-    name = "client",
-    srcs = ["HelloWorldClient.java"],
-    deps = [
-        ":helloworld_java_grpc",
-        ":helloworld_java_proto",
-        "@grpc_java//core",
-        "@grpc_java//okhttp",
-        "@grpc_java//stub",
-    ],
-)
-
-java_library(
-    name = "server",
+    name = "helloworld",
     srcs = [
         "Hello.java",
         "HelloWorldServer.java",
@@ -51,7 +39,7 @@ java_library(
 java_binary(
     name = "HelloWorldServer",
     runtime_deps = [
-        ":server",
+        ":helloworld",
         "@io_netty_buffer//jar",
         "@io_netty_codec//jar",
         "@io_netty_codec_http//jar",

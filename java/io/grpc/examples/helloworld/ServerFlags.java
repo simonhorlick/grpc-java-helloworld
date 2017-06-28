@@ -8,7 +8,7 @@ public class ServerFlags {
   /** Builder for ServerFlags objects. */
   public static class Builder {
 
-    private int port;
+    private int port = 50051;
 
     public Builder setPort(int port) {
       this.port = port;
