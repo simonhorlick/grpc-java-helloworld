@@ -3,6 +3,16 @@ workspace(name = "helloworld")
 # Override maven_jar so we can get sources.
 load("//tools/build_rules:maven_jar.bzl", "maven_jar")
 
+git_repository(
+    name = "io_bazel_rules_go",
+    commit = "152a165327817c214f5ea5861a1af68918883189",
+    remote = "https://github.com/bazelbuild/rules_go.git",
+)
+
+load("@io_bazel_rules_go//go:def.bzl", "go_repositories", "go_repository")
+
+go_repositories()
+
 http_archive(
     name = "grpc_java",
     sha256 = "b2dfb2602f752dfe413f163e89b6d8e21cbc71dcaf5bc9baa35ebc53916b39a6",
@@ -14,6 +24,14 @@ load("@grpc_java//:repositories.bzl", "grpc_java_repositories")
 
 grpc_java_repositories(
     omit_com_google_guava = True,
+)
+
+http_file(
+    name = "com_github_tianon_docker_brew_debian",
+    sha256 = "479bbadb58c74bd3f14507eda2c5ff03b88f7f9db0d7ce60471ffa0c6864f8df",
+    urls = [
+        "http://storage.googleapis.com/sh-external-artifacts/raw.githubusercontent.com/tianon/docker-brew-debian/b39d31635ca26c8b1f3d982090ba8d54167c4d85/jessie/rootfs.tar.gz",
+    ],
 )
 
 bind(
@@ -194,4 +212,125 @@ http_archive(
     urls = [
         "https://github.com/google/dagger/archive/792adb3fb98a5ea54e421d5f7bec0b38473fa6ad.tar.gz",
     ],
+)
+
+# For grpc-web-proxy
+go_repository(
+    name = "com_github_golang_protobuf",
+    commit = "8ee79997227bf9b34611aee7946ae64735e6fd93",
+    importpath = "github.com/golang/protobuf",
+)
+
+go_repository(
+    name = "org_golang_x_text",
+    commit = "4e9ab9ee170f2a39bd66c92b3e0a47ff47a4bc77",
+    importpath = "golang.org/x/text",
+)
+
+go_repository(
+    name = "org_golang_x_net",
+    commit = "5f8847ae0d0e90b6a9dc8148e7ad616874625171",
+    importpath = "golang.org/x/net",
+)
+
+go_repository(
+    name = "org_golang_x_sys",
+    commit = "f7928cfef4d09d1b080aa2b6fd3ca9ba1567c733",
+    importpath = "golang.org/x/sys",
+)
+
+go_repository(
+    name = "org_golang_google_grpc",
+    importpath = "google.golang.org/grpc",
+    tag = "v1.4.2",
+)
+
+go_repository(
+    name = "com_github_grpc_ecosystem_go_grpc_middleware",
+    commit = "f63a7dfb64c138bd93d5c5b896d8b33c4b08e000",
+    importpath = "github.com/grpc-ecosystem/go-grpc-middleware",
+)
+
+go_repository(
+    name = "com_github_mwitkow_grpc_proxy",
+    commit = "97396d94749c00db659393ba5123f707062f829f",
+    importpath = "github.com/mwitkow/grpc-proxy",
+)
+
+go_repository(
+    name = "com_github_mwitkow_go_conntrack",
+    commit = "cc309e4a22231782e8893f3c35ced0967807a33e",
+    importpath = "github.com/mwitkow/go-conntrack",
+)
+
+go_repository(
+    name = "com_github_grpc_ecosystem_go_grpc_prometheus",
+    commit = "0c1b191dbfe51efdabe3c14b9f6f3b96429e0722",
+    importpath = "github.com/grpc-ecosystem/go-grpc-prometheus",
+)
+
+go_repository(
+    name = "com_github_spf13_pflag",
+    commit = "e57e3eeb33f795204c1ca35f56c44f83227c6e66",
+    importpath = "github.com/spf13/pflag",
+)
+
+go_repository(
+    name = "com_github_sirupsen_logrus",
+    commit = "3d4380f53a34dcdc95f0c1db702615992b38d9a4",
+    importpath = "github.com/sirupsen/logrus",
+)
+
+go_repository(
+    name = "com_github_prometheus_client_model",
+    commit = "6f3806018612930941127f2a7c6c453ba2c527d2",
+    importpath = "github.com/prometheus/client_model",
+)
+
+go_repository(
+    name = "com_github_prometheus_common",
+    commit = "0866df4b85a18d652b6965be022d007cdf076822",
+    importpath = "github.com/prometheus/common",
+)
+
+go_repository(
+    name = "com_github_prometheus_client_golang",
+    commit = "de4d4ffe63b9eff7f27484fdef6e421597e6abb4",
+    importpath = "github.com/prometheus/client_golang",
+)
+
+go_repository(
+    name = "com_github_prometheus_procfs",
+    commit = "822d4a1f8edcbcbc71e8d1fd6527b12331a6d0ad",
+    importpath = "github.com/prometheus/procfs",
+)
+
+go_repository(
+    name = "com_github_beorn7_perks",
+    commit = "4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9",
+    importpath = "github.com/beorn7/perks",
+)
+
+go_repository(
+    name = "com_github_matttproud_golang_protobuf_extensions",
+    commit = "c12348ce28de40eed0136aa2b644d0ee0650e56c",
+    importpath = "github.com/matttproud/golang_protobuf_extensions",
+)
+
+go_repository(
+    name = "com_github_improbable_eng_grpc_web",
+    commit = "85d29a20b3d8cc55f53d19143ba2dd37946a2bd6",
+    importpath = "github.com/improbable-eng/grpc-web",
+)
+
+go_repository(
+    name = "com_github_rs_cors",
+    commit = "8dd4211afb5d08dbb39a533b9bb9e4b486351df6",
+    importpath = "github.com/rs/cors",
+)
+
+go_repository(
+    name = "org_golang_google_genproto",
+    commit = "aa2eb687b4d3e17154372564ad8d6bf11c3cf21f",
+    importpath = "google.golang.org/genproto",
 )
