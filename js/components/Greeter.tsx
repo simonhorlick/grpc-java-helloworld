@@ -34,11 +34,11 @@ export class Greeter extends React.Component<Props, State> {
   }
 
   onSubmit = () => {
-		if(!this.state.name) {
-			this.setState({ formErrors: "Please enter a name" })
+    if(!this.state.name) {
+      this.setState({ formErrors: "Please enter a name" })
       return;
-		}
-		this.setState({ formErrors: "" });
+    }
+    this.setState({ formErrors: "" });
 
     let request = new HelloRequest();
     request.setName(this.state.name);
