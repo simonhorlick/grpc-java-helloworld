@@ -29,18 +29,12 @@ java_library(
     ],
 )
 
-java_binary(
-    name = "HelloWorldClient",
-    runtime_deps = [
-        ":client",
-    ],
-)
-
 java_library(
     name = "server",
     srcs = [
         "Hello.java",
         "HelloWorldServer.java",
+        "ServerFlags.java",
     ],
     deps = [
         ":helloworld_java_grpc",

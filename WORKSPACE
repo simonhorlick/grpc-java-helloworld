@@ -1,5 +1,8 @@
 workspace(name = "helloworld")
 
+# Override maven_jar so we can get sources.
+load("//tools/build_rules:maven_jar.bzl", "maven_jar")
+
 http_archive(
     name = "grpc_java",
     sha256 = "b2dfb2602f752dfe413f163e89b6d8e21cbc71dcaf5bc9baa35ebc53916b39a6",
