@@ -28,7 +28,7 @@ bind(
 
 git_repository(
     name = "googleapis",
-    commit = "29820f9afca85b3e0ee083fc374e40de6dfa3226",
+    commit = "1dccf5c4a4c2ffc3e7cf4b9246d7cf82bc7efaff",
     remote = "https://github.com/simonhorlick/apis.git",
 )
 
