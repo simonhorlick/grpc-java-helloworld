@@ -1,8 +1,12 @@
 # grpc-java bazel rules example
 
-Try something like this:
+## Developing
+
+Built using [Bazel](https://bazel.build).
+Download Bazel from [https://storage.googleapis.com/bazel/0.4.5/rc1/index.html](https://storage.googleapis.com/bazel/0.4.5/rc1/index.html).
+
+### Starting a development environment
 
 ```shell
-$ bazel build ...
-$ ./bazel-bin/java/io/grpc/examples/helloworld/HelloWorldServer &
+$ ./start.sh
 ```
