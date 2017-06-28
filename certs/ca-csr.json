@@ -1,0 +1,16 @@
+{
+  "CN": "NGI SYSTEMS TEST CA",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "GB",
+      "L": "London",
+      "O": "NGi Systems",
+      "OU": "test",
+      "ST": "London"
+    }
+  ]
+}
