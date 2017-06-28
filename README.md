@@ -10,3 +10,5 @@ Download Bazel from [https://storage.googleapis.com/bazel/0.4.5/rc1/index.html](
 ```shell
 $ ./start.sh
 ```
+
+Then go to https://0.0.0.0:8082/
