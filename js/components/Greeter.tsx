@@ -47,7 +47,7 @@ export class Greeter extends React.Component<Props, State> {
     grpc.invoke(HelloService.SayHello, {
       request: request,
       headers: new BrowserHeaders({
-          "authorization": "Bearer ABC.DEF.XYZ",
+          "Authorization": "Bearer ABC.DEF.XYZ",
       }),
       host: API_URL,
       onHeaders: (headers: BrowserHeaders) => {},

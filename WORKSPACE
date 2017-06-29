@@ -253,7 +253,9 @@ go_repository(
 
 go_repository(
     name = "com_github_mwitkow_grpc_proxy",
-    commit = "97396d94749c00db659393ba5123f707062f829f",
+    commit = "fdb8208ccf3cad0ca72183a18dce12bb2c294c97",
+    remote = "https://github.com/simonhorlick/grpc-proxy",
+    vcs = "git",
     importpath = "github.com/mwitkow/grpc-proxy",
 )
 

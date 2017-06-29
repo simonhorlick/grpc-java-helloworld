@@ -6,10 +6,13 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.grpc.server.ForGrpcService;
 import dagger.grpc.server.NettyServerModule;
+import io.grpc.Metadata;
 import io.grpc.Server;
+import io.grpc.ServerCall;
+import io.grpc.ServerCall.Listener;
+import io.grpc.ServerCallHandler;
 import io.grpc.ServerInterceptor;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
@@ -29,7 +32,15 @@ public class HelloWorldServer {
     @Provides
     @ForGrpcService(HelloServiceGrpc.class)
     static List<? extends ServerInterceptor> provideHelloInterceptors() {
-      return new ArrayList<>();
+      return Arrays.asList(new ServerInterceptor() {
+        @Override
+        public <ReqT, RespT> Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> call,
+            Metadata headers,
+            ServerCallHandler<ReqT, RespT> next) {
+          System.out.println(headers);
+          return next.startCall(call, headers);
+        }
+      });
     }
   }
 
